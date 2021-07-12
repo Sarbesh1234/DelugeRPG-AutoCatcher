@@ -1,2 +1,6 @@
-print('test')
-print("Testing to see if push is working")
+from selenium import webdriver
+PATH = "C:\Program Files (x86)\chromedriver.exe"
+driver = webdriver.Chrome(PATH)
+
+driver.get("https://www.delugerpg.com/login/timeout")
+
