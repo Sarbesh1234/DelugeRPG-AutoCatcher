@@ -81,12 +81,27 @@ for i in range(1000):
     driver.implicitly_wait(2)
     driver.find_element_by_class_name('btn-battle-action').click()
     driver.implicitly_wait(2)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
-    driver.find_element_by_class_name('btn-battle-action').click()
+    driver.execute_script("window.scrollTo(0, 500);")
+    driver.implicitly_wait(5)
 
-'''element = WebDriverWait(driver, 2).until(
-            #EC.presence_of_element_located((By.CSS_SELECTOR, "input[class='btn-catch-button']"))
-        #)
-        #element.click()
-            #driver.find_element_by_name('/html/body/div[3]/div[2]/div[4]/div[2]/div[1]/div[2]/form/input[4]').click()
-            #print('goes in button')'''
+    try:
+        driver.find_elements_by_class_name('btn-battle-action')[0].click()
+    except :
+        driver.find_elements_by_class_name('btn-battle-action')[0].click()
+    driver.implicitly_wait(2)
+    try:
+        driver.find_element_by_class_name('btn-battle-action').click()
+    except:
+        driver.find_element_by_class_name('btn-battle-action').click()
+
+    driver.implicitly_wait(5)
+    try:
+        driver.find_element_by_id('battle').click()
+        driver.find_element_by_id('battle').click()
+        #driver.find_element_by_link_text('Return To Map.')
+    except:
+        driver.find_element_by_id('battle').click()
+        driver.find_element_by_id('battle').click()
+        #driver.find_element_by_link_text('Return To Map.')
+    driver.implicitly_wait(2)
+    print('bruh did you click or not')
