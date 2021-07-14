@@ -13,14 +13,15 @@ driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
         "navigator.__proto__ = newProto;"
     })
 driver.get("https://www.delugerpg.com/")
-
-
+#up_arrow = driver.find_element_by_id("move_n")
+#down_arrow = driver.find_element_by_id("move_s")
 print('testing')
+driver.implicitly_wait(5)
+driver.find_element_by_name('username').send_keys('pokevortex')
+driver.find_element_by_name('password').send_keys('azmarcos123')
+driver.find_element_by_name('Login').click()
 driver.implicitly_wait(10)
-
-up_arrow = driver.find_element_by_id("move_n")
-down_arrow = driver.find_element_by_id("move_s")
-for i in range(100):
+'''for i in range(1000):
 
     try:
         element = WebDriverWait(driver, 1).until(
@@ -41,4 +42,51 @@ for i in range(100):
                 #element.click()
         except:
             print('oof')
+    #try:
+        #element = WebDriverWait(driver, 2).until(
+        #EC.presence_of_element_located((By.ID, "move_s"))
+        #)
+       #element.click()
+    #except:
+        #print('no work')
 
+        try:
+        #element = WebDriverWait(driver, 2).until(
+            #EC.presence_of_element_located((By.CSS_SELECTOR, "input[class='btn-catch-button']"))
+        #)
+        #element.click()
+        driver.find_element_by_xpath('/html/body/div[3]/div[2]/div[4]/div[2]/div[1]/div[2]/form/input[4]').click()
+        print('goes in button')
+    except:
+        print('no work')
+'''
+for i in range(1000):
+    j = 0
+    while True:
+        try:
+            print('entered')
+            #driver.find_element_by_id('catch').click()
+            driver.find_element_by_class_name('btn-catch-action').click()
+            print('got through without exception')
+            break;
+        except:
+            if j % 2 == 0:
+                driver.find_element_by_id('move_n').click()
+            else:
+                driver.find_element_by_id('move_s').click()
+            print('fail')
+        j += 1
+    driver.implicitly_wait(2)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    driver.implicitly_wait(2)
+    driver.find_element_by_class_name('btn-battle-action').click()
+    driver.implicitly_wait(2)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+    driver.find_element_by_class_name('btn-battle-action').click()
+
+'''element = WebDriverWait(driver, 2).until(
+            #EC.presence_of_element_located((By.CSS_SELECTOR, "input[class='btn-catch-button']"))
+        #)
+        #element.click()
+            #driver.find_element_by_name('/html/body/div[3]/div[2]/div[4]/div[2]/div[1]/div[2]/form/input[4]').click()
+            #print('goes in button')'''
