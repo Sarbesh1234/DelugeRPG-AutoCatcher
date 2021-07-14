@@ -62,24 +62,38 @@ driver.implicitly_wait(10)
 '''
 j = 0
 for i in range(1000):
-
     while True:
-        try:
-            print('entered')
             #driver.find_element_by_id('catch').click()
             #Try to catch button
-            driver.find_element_by_class_name('btn-catch-action').click()
-            print('got through without exception')
-            break;
-        except:
-            if j % 2 == 0:
-                #up arrow
-                driver.find_element_by_id('move_n').click()
+            try:
+                txt = driver.find_element_by_id('dexy').text
+                print(txt)
+                if 'Dark' in txt:
+                    driver.implicitly_wait(5)
+                    driver.find_element_by_class_name('btn-catch-action').click()
+                    break
+                else:
+                    raise ValueError("Nope")
+            except:
+                if j % 2 == 0:
+                    # up arrow
+                    driver.find_element_by_id('move_n').click()
+                else:
+                    # down arrow
+                    driver.find_element_by_id('move_s').click()
+                print('fail')
+            '''if 'Normal' in driver.page_source:
+                driver.implicitly_wait(5)
+                driver.find_element_by_class_name('btn-catch-action').click()
             else:
+                if j % 2 == 0:
+                #up arrow
+                    driver.find_element_by_id('move_n').click()
+                else:
                 #down arrow
-                driver.find_element_by_id('move_s').click()
-            print('fail')
-        j += 1
+                    driver.find_element_by_id('move_s').click()
+                print('fail')'''
+            j += 1
     driver.implicitly_wait(5)
     #scroll to bottom
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
