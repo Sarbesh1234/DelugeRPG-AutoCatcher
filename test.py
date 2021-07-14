@@ -60,35 +60,45 @@ driver.implicitly_wait(10)
     except:
         print('no work')
 '''
+j = 0
 for i in range(1000):
-    j = 0
+
     while True:
         try:
             print('entered')
             #driver.find_element_by_id('catch').click()
+            #Try to catch button
             driver.find_element_by_class_name('btn-catch-action').click()
             print('got through without exception')
             break;
         except:
             if j % 2 == 0:
+                #up arrow
                 driver.find_element_by_id('move_n').click()
             else:
+                #down arrow
                 driver.find_element_by_id('move_s').click()
             print('fail')
         j += 1
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
+    #scroll to bottom
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
+    #click button
     driver.find_element_by_class_name('btn-battle-action').click()
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(5)
+    #scroll midway
     driver.execute_script("window.scrollTo(0, 500);")
     driver.implicitly_wait(5)
 
     try:
-        driver.find_elements_by_class_name('btn-battle-action')[0].click()
+        driver.find_elements_by_name('useitem_').click()
     except :
-        driver.find_elements_by_class_name('btn-battle-action')[0].click()
-    driver.implicitly_wait(2)
+        driver.find_element_by_name('useitem_').click()
+    driver.implicitly_wait(5)
+    driver.back()
+    driver.implicitly_wait(5)
+    '''
     try:
         driver.find_element_by_class_name('btn-battle-action').click()
     except:
@@ -96,12 +106,11 @@ for i in range(1000):
 
     driver.implicitly_wait(5)
     try:
-        driver.find_element_by_id('battle').click()
-        driver.find_element_by_id('battle').click()
+        driver.find_element_by_class_name('btn btn-primary').click()
         #driver.find_element_by_link_text('Return To Map.')
     except:
-        driver.find_element_by_id('battle').click()
-        driver.find_element_by_id('battle').click()
+        driver.find_element_by_class_name('btn btn-primary').click()
         #driver.find_element_by_link_text('Return To Map.')
     driver.implicitly_wait(2)
     print('bruh did you click or not')
+    '''
