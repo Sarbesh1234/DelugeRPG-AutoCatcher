@@ -47,7 +47,7 @@ for i in range(1000):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     driver.implicitly_wait(5)
     #click button
-    driver.find_element_by_class_name('btn-battle-action').click()
+    driver.find_element_by_name('Start Battle').click()
     driver.implicitly_wait(5)
     #scroll midway
     driver.execute_script("window.scrollTo(0, 500);")
